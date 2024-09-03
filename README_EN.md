@@ -1,6 +1,6 @@
 # [JavaFX Project]**MagicEncoding**(English)
 
-[**中文说明**](https://www.zzhow.com/MagicEncoding)
+[**中文说明**](README.md)
 
 ---
 
