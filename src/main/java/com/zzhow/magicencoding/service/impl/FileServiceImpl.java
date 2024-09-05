@@ -10,6 +10,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author ZZHow
@@ -45,7 +46,10 @@ public class FileServiceImpl implements FileService {
             return null;
         }
 
-        MyFiles.find(absolutePath, endWith, targetFileList);
+        String[] split = endWith.split("&");
+        for (String s : split) {
+            MyFiles.find(absolutePath, s, targetFileList);
+        }
 
         // 打印满足条件的文件的绝对路径
         for (String string : targetFileList) {
