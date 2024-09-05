@@ -5,10 +5,7 @@ import com.zzhow.magicencoding.service.impl.FileServiceImpl;
 import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.utils.MessageBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
@@ -32,17 +29,20 @@ public class MainController {
     private ListView<String> filesListView;
     @FXML
     private Label fileNumber;
-
-    public void initialize() {
-        originChoiceBox.getItems().addAll("GBK", "UTF-8");
-        originChoiceBox.setValue("GBK");
-        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
-        targetChoiceBox.setValue("UTF-8");
-    }
+    @FXML
+    private CheckBox isOverwriteCheckBox;
 
     public void clearFilesPath() {
         fileService.clearTargetFileList();
         filesListView.setItems(null);
+    }
+
+    @FXML
+    private void initialize() {
+        originChoiceBox.getItems().addAll("GBK", "UTF-8");
+        originChoiceBox.setValue("GBK");
+        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
+        targetChoiceBox.setValue("UTF-8");
     }
 
     @FXML
@@ -85,8 +85,9 @@ public class MainController {
         String absolutePath = pathTextField.getText();
         String originCharset = originChoiceBox.getValue();
         String targetCharset = targetChoiceBox.getValue();
+        boolean isOverwrite = this.isOverwriteCheckBox.isSelected();
 
-        if (fileService.transform(absolutePath, originCharset, targetCharset)) {
+        if (fileService.transform(absolutePath, originCharset, targetCharset, isOverwrite)) {
             MessageBox.success("执行成功", "已将" + fileService.getTargetFileList().size()
                     + "个文件从 \"" + originCharset + "\" 转为 \"" + targetCharset + "\"");
         } else {

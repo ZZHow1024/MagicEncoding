@@ -39,6 +39,6 @@ public interface FileService {
      * @param targetCharset 目标字符集
      * @return true - 转换成功，false - 转换失败
      */
-    boolean transform(String absolutePath, String originCharset, String targetCharset);
+    boolean transform(String absolutePath, String originCharset, String targetCharset, boolean isOverwrite);
 
 }

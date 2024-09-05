@@ -6,7 +6,9 @@ import com.zzhow.magicencoding.utils.MyFiles;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +40,7 @@ public class FileServiceImpl implements FileService {
         File[] files = currentFolder.listFiles();
 
         if (files == null || files.length == 0) {
-            MessageBox.error("当前文件夹下没有满足条件的文件", "请检查设置的条件");
+            MessageBox.error("当前路径下没有满足条件的文件", "请检查设置的条件");
 
             return null;
         }
@@ -54,7 +56,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public boolean transform(String absolutePath, String originCharset, String targetCharset) {
+    public boolean transform(String absolutePath, String originCharset, String targetCharset, boolean isOverwrite) {
         if (targetFileList.isEmpty()) {
             MessageBox.error("当前没有命中的文件", "请先查找文件");
 
@@ -62,7 +64,7 @@ public class FileServiceImpl implements FileService {
         }
 
         // 开始转换编码
-        String outputPath = absolutePath + "/MagicEncodingOutput";
+        String outputPath = absolutePath + File.separator + "MagicEncodingOutput";
         File outputFolder = new File(outputPath);
         if (outputFolder.exists()) {
             MyFiles.deleteFolder(outputPath);
@@ -78,6 +80,22 @@ public class FileServiceImpl implements FileService {
         for (String originPath : targetFileList) {
             String targetPath = outputPath + originPath.split(absolutePath)[1];
             MyFiles.transform(originPath, targetPath, originCharset, targetCharset);
+            if (isOverwrite)
+                MyFiles.overwriteFile(targetPath, originPath);
+        }
+
+        if (isOverwrite) {
+            MyFiles.deleteFolder(outputPath);
+            outputFolder.delete();
+        } else {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(outputFolder);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
 
         return true;

@@ -72,4 +72,17 @@ public class MyFiles {
             }
         }
     }
+
+    public static void overwriteFile(String originPath, String targetPath) {
+        try (FileInputStream fileInputStream = new FileInputStream(originPath);
+             FileOutputStream fileOutputStream = new FileOutputStream(targetPath, false)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fileInputStream.read(buffer)) != -1) {
+                fileOutputStream.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
