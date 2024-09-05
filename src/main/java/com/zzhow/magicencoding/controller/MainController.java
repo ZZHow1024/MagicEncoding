@@ -6,8 +6,14 @@ import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.utils.MessageBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
+
+import java.io.File;
+import java.util.List;
 
 public class MainController {
 
@@ -24,6 +30,8 @@ public class MainController {
     private TextField endWithTextField;
     @FXML
     private ListView<String> filesListView;
+    @FXML
+    private Label fileNumber;
 
     public void initialize() {
         originChoiceBox.getItems().addAll("GBK", "UTF-8");
@@ -38,10 +46,28 @@ public class MainController {
     }
 
     @FXML
+    private void handleDragOver(DragEvent event) {
+        if (event.getGestureSource() != event.getTarget() // 是否从外部拖拽
+                && event.getDragboard().hasFiles()) { // 是否拖拽了文件
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);  // 接受拖拽的文件
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void onDragFile(DragEvent event) {
+        List<File> files = event.getDragboard().getFiles();
+        if (!files.isEmpty()) {
+            pathTextField.setText(files.get(0).getAbsolutePath());
+        }
+    }
+
+    @FXML
     private void onReset() {
         this.clearFilesPath();
         pathTextField.setText("");
         endWithTextField.setText("");
+        fileNumber.setText("文件数目：0");
     }
 
     @FXML
@@ -51,6 +77,7 @@ public class MainController {
         String endWith = endWithTextField.getText();
 
         filesListView.setItems(fileService.findFiles(absolutePath, endWith));
+        fileNumber.setText("文件数目：" + fileService.getTargetFileList().size());
     }
 
     @FXML
