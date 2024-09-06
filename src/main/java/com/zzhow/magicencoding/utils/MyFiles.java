@@ -48,7 +48,7 @@ public class MyFiles {
                     bufferedWriter.newLine();
             }
 
-            System.out.println(originPath + "转换成功");
+//            System.out.println(originPath + "转换成功");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -70,6 +70,19 @@ public class MyFiles {
 
                 file1.delete();
             }
+        }
+    }
+
+    public static void overwriteFile(String originPath, String targetPath) {
+        try (FileInputStream fileInputStream = new FileInputStream(originPath);
+             FileOutputStream fileOutputStream = new FileOutputStream(targetPath, false)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fileInputStream.read(buffer)) != -1) {
+                fileOutputStream.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

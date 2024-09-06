@@ -1,6 +1,11 @@
 package com.zzhow.magicencoding.utils;
 
+import com.zzhow.magicencoding.MainClass;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * @author ZZHow
@@ -14,25 +19,25 @@ public class MessageBox {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
 
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Image icon = new Image(Objects.requireNonNull(MainClass.class.getResourceAsStream("/image/icon.png")));
+        stage.getIcons().add(icon);
+
         alert.showAndWait();
     }
 
     public static void error(String headerText, String contentText) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("错误");
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-
-        alert.showAndWait();
+        alert(Alert.AlertType.ERROR,
+                "错误",
+                headerText,
+                contentText);
     }
 
     public static void success(String headerText, String contentText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("成功");
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-
-        alert.showAndWait();
+        alert(Alert.AlertType.INFORMATION,
+                "成功",
+                headerText,
+                contentText);
     }
 
 }

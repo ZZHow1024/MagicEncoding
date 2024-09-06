@@ -5,9 +5,12 @@ import com.zzhow.magicencoding.service.impl.FileServiceImpl;
 import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.utils.MessageBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
+
+import java.io.File;
+import java.util.List;
 
 public class MainController {
 
@@ -24,13 +27,10 @@ public class MainController {
     private TextField endWithTextField;
     @FXML
     private ListView<String> filesListView;
-
-    public void initialize() {
-        originChoiceBox.getItems().addAll("GBK", "UTF-8");
-        originChoiceBox.setValue("GBK");
-        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
-        targetChoiceBox.setValue("UTF-8");
-    }
+    @FXML
+    private Label fileNumber;
+    @FXML
+    private CheckBox isOverwriteCheckBox;
 
     public void clearFilesPath() {
         fileService.clearTargetFileList();
@@ -38,10 +38,36 @@ public class MainController {
     }
 
     @FXML
+    private void initialize() {
+        originChoiceBox.getItems().addAll("GBK", "UTF-8");
+        originChoiceBox.setValue("GBK");
+        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
+        targetChoiceBox.setValue("UTF-8");
+    }
+
+    @FXML
+    private void handleDragOver(DragEvent event) {
+        if (event.getGestureSource() != event.getTarget() // 是否从外部拖拽
+                && event.getDragboard().hasFiles()) { // 是否拖拽了文件
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);  // 接受拖拽的文件
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void onDragFile(DragEvent event) {
+        List<File> files = event.getDragboard().getFiles();
+        if (!files.isEmpty()) {
+            pathTextField.setText(files.get(0).getAbsolutePath());
+        }
+    }
+
+    @FXML
     private void onReset() {
         this.clearFilesPath();
         pathTextField.setText("");
         endWithTextField.setText("");
+        fileNumber.setText("文件数目：0");
     }
 
     @FXML
@@ -51,6 +77,7 @@ public class MainController {
         String endWith = endWithTextField.getText();
 
         filesListView.setItems(fileService.findFiles(absolutePath, endWith));
+        fileNumber.setText("文件数目：" + fileService.getTargetFileList().size());
     }
 
     @FXML
@@ -58,8 +85,9 @@ public class MainController {
         String absolutePath = pathTextField.getText();
         String originCharset = originChoiceBox.getValue();
         String targetCharset = targetChoiceBox.getValue();
+        boolean isOverwrite = this.isOverwriteCheckBox.isSelected();
 
-        if (fileService.transform(absolutePath, originCharset, targetCharset)) {
+        if (fileService.transform(absolutePath, originCharset, targetCharset, isOverwrite)) {
             MessageBox.success("执行成功", "已将" + fileService.getTargetFileList().size()
                     + "个文件从 \"" + originCharset + "\" 转为 \"" + targetCharset + "\"");
         } else {

@@ -1,6 +1,7 @@
 module com.zzhow.magicencoding {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.zzhow.magicencoding to javafx.fxml;
