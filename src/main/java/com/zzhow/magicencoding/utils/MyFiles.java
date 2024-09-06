@@ -48,7 +48,7 @@ public class MyFiles {
                     bufferedWriter.newLine();
             }
 
-            System.out.println(originPath + "转换成功");
+//            System.out.println(originPath + "转换成功");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author ZZHow
@@ -52,15 +51,17 @@ public class FileServiceImpl implements FileService {
         }
 
         // 打印满足条件的文件的绝对路径
-        for (String string : targetFileList) {
-            System.out.println(string);
-        }
+//        for (String string : targetFileList) {
+//            System.out.println(string);
+//        }
 
         return FXCollections.observableList(targetFileList);
     }
 
     @Override
     public boolean transform(String absolutePath, String originCharset, String targetCharset, boolean isOverwrite) {
+        absolutePath = absolutePath.replace("\\", "/");
+
         if (targetFileList.isEmpty()) {
             MessageBox.error("当前没有命中的文件", "请先查找文件");
 
@@ -68,7 +69,7 @@ public class FileServiceImpl implements FileService {
         }
 
         // 开始转换编码
-        String outputPath = absolutePath + File.separator + "MagicEncodingOutput";
+        String outputPath = absolutePath + "/" + "MagicEncodingOutput";
         File outputFolder = new File(outputPath);
         if (outputFolder.exists()) {
             MyFiles.deleteFolder(outputPath);
@@ -82,6 +83,7 @@ public class FileServiceImpl implements FileService {
         }
 
         for (String originPath : targetFileList) {
+            originPath = originPath.replace("\\", "/");
             String targetPath = outputPath + originPath.split(absolutePath)[1];
             MyFiles.transform(originPath, targetPath, originCharset, targetCharset);
             if (isOverwrite)
