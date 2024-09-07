@@ -37,7 +37,14 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public ObservableList<String> findFiles(String absolutePath, String endWith) {
+        this.targetFileList.clear();
         File currentFolder = new File(absolutePath);
+
+        if (currentFolder.exists() && currentFolder.isFile()) {
+            this.targetFileList.add(absolutePath);
+            return FXCollections.observableList(this.targetFileList);
+        }
+
         File[] files = currentFolder.listFiles();
 
         if (files == null || files.length == 0) {
@@ -64,15 +71,22 @@ public class FileServiceImpl implements FileService {
     public boolean transform(String absolutePath, String originCharset, String targetCharset, boolean isOverwrite) {
         absolutePath = absolutePath.replace("\\", "/");
 
-        if (targetFileList.isEmpty()) {
+        File file = new File(absolutePath);
+        String outputPath = null;
+
+        if (file.exists() && file.isFile()) {
+            outputPath = absolutePath.substring(0, absolutePath.lastIndexOf("/")) + "/" + "MagicEncodingOutput";
+            findFiles(absolutePath, "");
+        } else if (this.targetFileList.isEmpty()) {
             MessageBox.error(Application.bundle.getString("error2_headerText")
                     , Application.bundle.getString("error2_contentText"));
 
             return false;
+        } else {
+            outputPath = absolutePath + "/" +"MagicEncodingOutput";
         }
 
         // 开始转换编码
-        String outputPath = absolutePath + "/" + "MagicEncodingOutput";
         File outputFolder = new File(outputPath);
         if (outputFolder.exists()) {
             MyFiles.deleteFolder(outputPath);
@@ -84,7 +98,12 @@ public class FileServiceImpl implements FileService {
 
         for (String originPath : targetFileList) {
             originPath = originPath.replace("\\", "/");
-            String targetPath = outputPath + originPath.split(absolutePath)[1];
+            String targetPath = null;
+            if (file.isFile()) {
+                targetPath = outputPath + "/" + file.getName();
+            } else {
+                targetPath = outputPath + originPath.split(absolutePath)[1];
+            }
             MyFiles.transform(originPath, targetPath, originCharset, targetCharset);
             if (isOverwrite)
                 MyFiles.overwriteFile(targetPath, originPath);
