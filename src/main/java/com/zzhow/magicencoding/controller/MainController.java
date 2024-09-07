@@ -13,8 +13,10 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.SortedMap;
 
 public class MainController {
 
@@ -65,9 +67,12 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        originChoiceBox.getItems().addAll("GBK", "UTF-8");
+        SortedMap<String, Charset> stringCharsetSortedMap = Charset.availableCharsets();
+        for (String charset : stringCharsetSortedMap.keySet()) {
+            originChoiceBox.getItems().add(charset);
+            targetChoiceBox.getItems().add(charset);
+        }
         originChoiceBox.setValue("GBK");
-        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
         targetChoiceBox.setValue("UTF-8");
         languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
         File config = new File(System.getProperty("user.dir") + "/MagicEncoding.conf");
