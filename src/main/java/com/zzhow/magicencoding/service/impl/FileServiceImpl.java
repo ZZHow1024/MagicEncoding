@@ -1,6 +1,7 @@
 package com.zzhow.magicencoding.service.impl;
 
 import com.zzhow.magicencoding.service.FileService;
+import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
 import com.zzhow.magicencoding.utils.MyFiles;
 import javafx.collections.FXCollections;
@@ -40,7 +41,8 @@ public class FileServiceImpl implements FileService {
         File[] files = currentFolder.listFiles();
 
         if (files == null || files.length == 0) {
-            MessageBox.error("当前路径下没有满足条件的文件", "请检查设置的条件");
+            MessageBox.error(Application.bundle.getString("error1_headerText")
+                    , Application.bundle.getString("error1_contentText"));
 
             return null;
         }
@@ -63,7 +65,8 @@ public class FileServiceImpl implements FileService {
         absolutePath = absolutePath.replace("\\", "/");
 
         if (targetFileList.isEmpty()) {
-            MessageBox.error("当前没有命中的文件", "请先查找文件");
+            MessageBox.error(Application.bundle.getString("error2_headerText")
+                    , Application.bundle.getString("error2_contentText"));
 
             return false;
         }
@@ -76,11 +79,8 @@ public class FileServiceImpl implements FileService {
             outputFolder.delete();
         }
 
-        if (!outputFolder.mkdir()) {
-            MessageBox.error("创建输出文件夹失败", "请重试");
-
+        if (!outputFolder.mkdir())
             return false;
-        }
 
         for (String originPath : targetFileList) {
             originPath = originPath.replace("\\", "/");
