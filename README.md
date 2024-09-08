@@ -67,6 +67,6 @@ MagicEncoding3.0.0_ZH
 
 MagicEncoding2.0.0
 
-![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2F94657332-79a5-4e54-b697-8979784a6da3%2FMagicEncoding1.0.0.png?table=block&id=c8dd391f-0e31-455c-8dc3-2b154b44605f&t=c8dd391f-0e31-455c-8dc3-2b154b44605f&width=529&cache=v2)
+![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2F94657332-79a5-4e54-b697-8979784a6da3%2FMagicEncoding1.0.0.png?table=block&id=c8dd391f-0e31-455c-8dc3-2b154b44605f&t=c8dd391f-0e31-455c-8dc3-2b154b44605f&width=1624&cache=v2)
 
 MagicEncoding1.0.0
