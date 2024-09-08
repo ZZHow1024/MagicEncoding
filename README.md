@@ -1,12 +1,12 @@
-# [JavaFX 项目]神奇编码_**MagicEncoding**（中文说明）
+# [JavaFX Project]**MagicEncoding**(English)
 
-[**English**](README_EN.md)
+[**中文说明**](README_ZH.md)
 
 ---
 
 Website:
 
-[[JavaFX 项目]神奇编码_MagicEncoding | ZZHow](https://www.zzhow.com/MagicEncoding)
+[[JavaFX Project]MagicEncoding_EN | ZZHow](https://www.zzhow.com/MagicEncodingEN)
 
 Source Code:
 
@@ -18,43 +18,59 @@ https://github.com/ZZHow1024/MagicEncoding/releases
 
 ---
 
-## 使用说明
+## License
 
-- 确定您使用的操作系统。
-    - Linux：
-        - 选择 .deb安装包 / .rpm安装包。
-    - macOS：
-        - 确定您使用的 Mac 的芯片(Apple Silicon / Intel)。
-        - 选择 .dmg磁盘镜像 / .pkg安装包。
-    - Windows：
-        - 选择 .zip压缩包 / .exe安装包 / .msi安装包。
-- 下载对应的文件。
-- Linux 和 macOS 需要执行安装操作后再运行，Windows 可直接运行 .zip 压缩包中的 .exe 可执行程序或选择 .exe 安装包与 .msi 安装包执行安装操作。
-- 启动 MagicEncoding。
-- 拖拽文件夹获取路径，填入需要筛选的后缀名（多种后缀名用“&”分隔），单击“查找文件”。
-- 选择原始编码与目标编码，单击“开始转换”。
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## **Instructions for use**
+
+- Determine the operating system you are using.
+    - Linux:
+        - Select .deb installation package/ .rpm installation package.
+    - macOS:
+        - Determine the chipset of your Mac (Apple Silicon / Intel).
+        - Select .dmg disk image/ .pkg installation package.
+    - Windows:
+        - Select .zip package/.exe installation package/.msi installation package.
+- Download the corresponding file.
+- Linux and macOS users need to perform the installation operation before running. Windows users can directly run the .exe executable program in the .zip compressed package or select the .exe installation package and .msi installation package to perform the installation operation.
+- Start MagicEncoding.
+- You can select the language in the lower right corner of MagicEncoding's main interface.
+    - Currently supports Chinese (Simplified / Traditional) and English.
+- Drag the folder or file to obtain the path, enter the suffix name to be filtered (separate multiple suffix names with "&"), and click Find File.
+- Select the original encoding and target encoding, and click "Start Conversion".
 
 ---
 
-## 功能介绍
+## Function Introduction
 
+- MagicEncoding3.0.0
+    - Automatic encoding recognition.
+    - Single file conversion.
+    - Support multiple languages.
+        - Chinese (Simplified/Traditional)
+        - English
 - MagicEncoding2.0.0
-    - 拖拽文件夹获取路径。
-    - 查找多种后缀名。
-    - 支持覆盖原文件。
+    - Drag the folder to get the path.
+    - Search for multiple suffixes.
+    - Support overwriting original files.
 - MagicEncoding1.0.0
-    - "GBK" 与 "UTF-8" 之间的编码转换。
-    - 根据路径查找文件。
-    - 支持根据文件后缀名筛选文件。
+    - Encoding conversion between "GBK" and "UTF-8”.
+    - Find files by path.
+    - Support filtering files based on file extensions.
 
 ---
 
-## **效果图**
+## **Renderings**
 
-![MagicEncoding2.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fcea3d468-2198-4819-a5c3-cb4f3f287dfa%2FMagicEncoding2.0.0.png?table=block&id=34817b71-f9d4-42b9-91e9-a477ad85b262&t=34817b71-f9d4-42b9-91e9-a477ad85b262&width=1624&cache=v2)
+![MagicEncoding3.0.0_EN](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa48f9fb0-5ca9-4b3e-aa65-5c0b9b8f53a4%2FMagicEncoding3.0.0_EN.png?table=block&id=e473a771-1ea7-42ab-9cc2-b124f8610072&t=e473a771-1ea7-42ab-9cc2-b124f8610072&width=1624&cache=v2)
+
+MagicEncoding3.0.0_EN
+
+![MagicEncoding2.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fbf42de01-57d9-4f5d-bb7c-3490b0db7ee1%2FMagicEncoding2.0.0.png?table=block&id=7ce8da63-3633-47ff-848c-94492101089c&t=7ce8da63-3633-47ff-848c-94492101089c&width=1624&cache=v2)
 
 MagicEncoding2.0.0
 
-![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2F94657332-79a5-4e54-b697-8979784a6da3%2FMagicEncoding1.0.0.png?table=block&id=c8dd391f-0e31-455c-8dc3-2b154b44605f&t=c8dd391f-0e31-455c-8dc3-2b154b44605f&width=529&cache=v2)
+![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa91b3a7d-672f-4ea2-b167-4657fef038dc%2FMagicEncoding1.0.0.png?table=block&id=ed5e4ef9-7816-4961-9740-d423c5681168&t=ed5e4ef9-7816-4961-9740-d423c5681168&width=1624&cache=v2)
 
 MagicEncoding1.0.0

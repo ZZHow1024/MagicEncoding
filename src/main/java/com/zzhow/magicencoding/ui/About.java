@@ -17,7 +17,7 @@ import java.util.Objects;
 public class About {
     public static void open() {
         Stage stage = new Stage();
-        stage.setTitle("MagicEncoding 2.0.0 - About");
+        stage.setTitle("MagicEncoding 3.0.0 - About");
         Image icon = new Image(Objects.requireNonNull(MainClass.class.getResourceAsStream("/image/icon.png")));
         stage.getIcons().add(icon);
         stage.setResizable(false);
