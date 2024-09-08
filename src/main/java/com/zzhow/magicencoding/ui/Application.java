@@ -17,7 +17,7 @@ public class Application extends javafx.application.Application {
 
     public static void setLanguage(String language) {
         Application.language = language;
-        bundle = ResourceBundle.getBundle("MessagesBundle", new Locale(language));
+        bundle = ResourceBundle.getBundle("MessagesBundle", new Locale(language.split("_")[0], language.split("_")[1]));
     }
 
     @Override

@@ -80,9 +80,9 @@ public class MainController {
         try (BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(config)))) {
             String language = bf.readLine().split("=")[1];
             language = switch (language) {
-                case "zh_Hans" -> "简体中文";
-                case "zh_Hant" -> "繁體中文";
-                case "en" -> "English";
+                case "zh_CN" -> "简体中文";
+                case "zh_TW" -> "繁體中文";
+                case "en_US" -> "English";
                 default -> "简体中文";
             };
             languageSelector.setValue(language);
@@ -157,9 +157,9 @@ public class MainController {
     private void switchLanguage() {
         String selectorValue = languageSelector.getValue();
         selectorValue = switch (selectorValue) {
-            case "简体中文" -> "zh_Hans";
-            case "繁體中文" -> "zh_Hant";
-            case "English" -> "en";
+            case "简体中文" -> "zh_CN";
+            case "繁體中文" -> "zh_TW";
+            case "English" -> "en_US";
             default -> "zh_Hans";
         };
 
