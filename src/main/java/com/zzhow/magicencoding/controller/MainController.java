@@ -68,11 +68,12 @@ public class MainController {
     @FXML
     private void initialize() {
         SortedMap<String, Charset> stringCharsetSortedMap = Charset.availableCharsets();
+        originChoiceBox.getItems().add("Auto");
         for (String charset : stringCharsetSortedMap.keySet()) {
             originChoiceBox.getItems().add(charset);
             targetChoiceBox.getItems().add(charset);
         }
-        originChoiceBox.setValue("GBK");
+        originChoiceBox.setValue("Auto");
         targetChoiceBox.setValue("UTF-8");
         languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
         File config = new File(System.getProperty("user.dir") + "/MagicEncoding.conf");
@@ -144,6 +145,8 @@ public class MainController {
             MessageBox.error(Application.bundle.getString("error3_headerText")
                     , Application.bundle.getString("error3_contentText"));
         }
+
+        this.onFindFiles();
     }
 
     @FXML

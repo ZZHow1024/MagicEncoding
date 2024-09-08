@@ -87,7 +87,7 @@ public class FileServiceImpl implements FileService {
             outputPath = absolutePath + "/" + "MagicEncodingOutput";
         }
 
-        // 开始转换编码
+        // 准备编码转换
         File outputFolder = new File(outputPath);
         if (outputFolder.exists()) {
             MyFileUtil.deleteFolder(outputPath);
@@ -97,8 +97,10 @@ public class FileServiceImpl implements FileService {
         if (!outputFolder.mkdir())
             return false;
 
+        // 遍历文件列表，依次转换编码
         for (String originPath : targetFileList) {
-            // 去除字符集部分
+            // 分离字符集部分
+            String autoCharset = originPath.split(" - ")[0];
             originPath = originPath.split(" - ")[1];
             // 适配 Windows 路径
             originPath = originPath.replace("\\", "/");
@@ -108,11 +110,20 @@ public class FileServiceImpl implements FileService {
             } else {
                 targetPath = outputPath + originPath.split(absolutePath)[1];
             }
-            MyFileUtil.transform(originPath, targetPath, originCharset, targetCharset);
+            if ("Auto".equals(originCharset)) {
+                if ("unknown".equals(autoCharset)) {
+                    MyFileUtil.transform(originPath, targetPath, targetCharset);
+                } else
+                    MyFileUtil.transform(originPath, targetPath, autoCharset, targetCharset);
+            } else
+                MyFileUtil.transform(originPath, targetPath, originCharset, targetCharset);
+
+            // 覆盖原文件
             if (isOverwrite)
                 MyFileUtil.overwriteFile(targetPath, originPath);
         }
 
+        // 覆盖原文件 - 删除输出文件夹，否则弹出资源管理器
         if (isOverwrite) {
             MyFileUtil.deleteFolder(outputPath);
             outputFolder.delete();

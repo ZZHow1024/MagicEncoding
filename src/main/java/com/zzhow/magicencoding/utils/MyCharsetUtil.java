@@ -19,9 +19,9 @@ public class MyCharsetUtil {
 
     public static String getCharset(File file) {
         try (FileInputStream fis = new FileInputStream(file)) {
-            byte[] buffer = new byte[fis.available()];
+            byte[] buffer = new byte[1024];
             int readLength;
-            while ((readLength = fis.read(buffer)) != -1 && !detector.isDone()) {
+            while ((readLength = fis.read(buffer)) > 0 && !detector.isDone()) {
                 detector.handleData(buffer, 0, readLength);
             }
         } catch (IOException e) {

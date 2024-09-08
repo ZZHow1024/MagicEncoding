@@ -26,8 +26,8 @@
             <Label fx:id="Label3" layoutX="77.0" layoutY="97.0" text="后缀名：" />
             <Label fx:id="Label4" layoutX="77.0" layoutY="141.0" text="字符集：" />
             <Label fx:id="Label5" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="143.0" text="→" />
-            <ChoiceBox fx:id="originChoiceBox" layoutX="237.0" layoutY="138.0" prefHeight="26.0" prefWidth="69.0" />
-            <ChoiceBox fx:id="targetChoiceBox" layoutX="356.0" layoutY="138.0" prefHeight="26.0" prefWidth="69.0" />
+            <ChoiceBox fx:id="originChoiceBox" layoutX="165.0" layoutY="139.0" prefHeight="26.0" prefWidth="120.0" />
+            <ChoiceBox fx:id="targetChoiceBox" layoutX="378.0" layoutY="139.0" prefHeight="26.0" prefWidth="120.0" />
             <CheckBox fx:id="isOverwriteCheckBox" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="240.0" layoutY="181.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="181.0" selected="true" style="-fx-graphic-text-gap: 2px;" text="覆盖原文件" textAlignment="CENTER" />
         </children>
     </AnchorPane>

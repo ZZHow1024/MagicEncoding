@@ -47,10 +47,35 @@ public class MyFileUtil {
                 if ((line = bufferedReader.readLine()) != null)
                     bufferedWriter.newLine();
             }
-
-//            System.out.println(originPath + "转换成功");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + "转换失败");
+        }
+    }
+
+    public static void transform(String originPath, String targetPath, String targetCharSet) {
+        File targetFile = new File(targetPath);
+        if (!targetFile.exists()) {
+            targetFile.getParentFile().mkdirs();
+            try {
+                targetFile.createNewFile();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(originPath)));
+             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(targetPath), targetCharSet))) {
+
+            String line = bufferedReader.readLine();
+
+            while (line != null) {
+                bufferedWriter.write(line);
+                if ((line = bufferedReader.readLine()) != null)
+                    bufferedWriter.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + "转换失败");
         }
     }
 
