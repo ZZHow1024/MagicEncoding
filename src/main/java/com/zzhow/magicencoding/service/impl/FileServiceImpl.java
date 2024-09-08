@@ -3,7 +3,8 @@ package com.zzhow.magicencoding.service.impl;
 import com.zzhow.magicencoding.service.FileService;
 import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
-import com.zzhow.magicencoding.utils.MyFiles;
+import com.zzhow.magicencoding.utils.MyCharsetUtil;
+import com.zzhow.magicencoding.utils.MyFileUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -41,7 +42,7 @@ public class FileServiceImpl implements FileService {
         File currentFolder = new File(absolutePath);
 
         if (currentFolder.exists() && currentFolder.isFile()) {
-            this.targetFileList.add(absolutePath);
+            this.targetFileList.add(MyCharsetUtil.getCharset(currentFolder) + " - " + absolutePath);
             return FXCollections.observableList(this.targetFileList);
         }
 
@@ -56,7 +57,7 @@ public class FileServiceImpl implements FileService {
 
         String[] split = endWith.split("&");
         for (String s : split) {
-            MyFiles.find(absolutePath, s, targetFileList);
+            MyFileUtil.find(absolutePath, s, targetFileList);
         }
 
         // 打印满足条件的文件的绝对路径
@@ -83,13 +84,13 @@ public class FileServiceImpl implements FileService {
 
             return false;
         } else {
-            outputPath = absolutePath + "/" +"MagicEncodingOutput";
+            outputPath = absolutePath + "/" + "MagicEncodingOutput";
         }
 
         // 开始转换编码
         File outputFolder = new File(outputPath);
         if (outputFolder.exists()) {
-            MyFiles.deleteFolder(outputPath);
+            MyFileUtil.deleteFolder(outputPath);
             outputFolder.delete();
         }
 
@@ -97,6 +98,9 @@ public class FileServiceImpl implements FileService {
             return false;
 
         for (String originPath : targetFileList) {
+            // 去除字符集部分
+            originPath = originPath.split(" - ")[1];
+            // 适配 Windows 路径
             originPath = originPath.replace("\\", "/");
             String targetPath = null;
             if (file.isFile()) {
@@ -104,13 +108,13 @@ public class FileServiceImpl implements FileService {
             } else {
                 targetPath = outputPath + originPath.split(absolutePath)[1];
             }
-            MyFiles.transform(originPath, targetPath, originCharset, targetCharset);
+            MyFileUtil.transform(originPath, targetPath, originCharset, targetCharset);
             if (isOverwrite)
-                MyFiles.overwriteFile(targetPath, originPath);
+                MyFileUtil.overwriteFile(targetPath, originPath);
         }
 
         if (isOverwrite) {
-            MyFiles.deleteFolder(outputPath);
+            MyFileUtil.deleteFolder(outputPath);
             outputFolder.delete();
         } else {
             if (Desktop.isDesktopSupported()) {

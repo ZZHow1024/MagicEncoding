@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author ZZHow
  * @date 2024/9/3
  */
-public class MyFiles {
+public class MyFileUtil {
 
     public static void find(String path, String endWith, ArrayList<String> res) {
         File currentPath = new File(path);
@@ -20,7 +20,7 @@ public class MyFiles {
                 find(file.getAbsolutePath(), endWith, res);
             } else {
                 if (file.getName().endsWith(endWith)) {
-                    res.add(file.getAbsolutePath());
+                    res.add(MyCharsetUtil.getCharset(file) + " - " + file.getAbsolutePath());
                 }
             }
         }
