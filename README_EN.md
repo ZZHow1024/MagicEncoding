@@ -59,7 +59,7 @@ https://github.com/ZZHow1024/MagicEncoding/releases
 
 ## **Renderings**
 
-![MagicEncoding3.0.0_EN](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa48f9fb0-5ca9-4b3e-aa65-5c0b9b8f53a4%2FMagicEncoding3.0.0_EN.png?table=block&id=e473a771-1ea7-42ab-9cc2-b124f8610072&t=e473a771-1ea7-42ab-9cc2-b124f8610072&width=493&cache=v2)
+![MagicEncoding3.0.0_EN](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa48f9fb0-5ca9-4b3e-aa65-5c0b9b8f53a4%2FMagicEncoding3.0.0_EN.png?table=block&id=e473a771-1ea7-42ab-9cc2-b124f8610072&t=e473a771-1ea7-42ab-9cc2-b124f8610072&width=1624&cache=v2)
 
 MagicEncoding3.0.0_EN
 
@@ -67,6 +67,6 @@ MagicEncoding3.0.0_EN
 
 MagicEncoding2.0.0
 
-![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa91b3a7d-672f-4ea2-b167-4657fef038dc%2FMagicEncoding1.0.0.png?table=block&id=ed5e4ef9-7816-4961-9740-d423c5681168&t=ed5e4ef9-7816-4961-9740-d423c5681168&width=1504&cache=v2)
+![MagicEncoding1.0.0](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fa91b3a7d-672f-4ea2-b167-4657fef038dc%2FMagicEncoding1.0.0.png?table=block&id=ed5e4ef9-7816-4961-9740-d423c5681168&t=ed5e4ef9-7816-4961-9740-d423c5681168&width=1624&cache=v2)
 
 MagicEncoding1.0.0
