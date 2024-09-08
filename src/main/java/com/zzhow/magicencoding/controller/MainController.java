@@ -141,12 +141,11 @@ public class MainController {
                     "\"" + originCharset + "\" → \"" + targetCharset + "\""
                             + Application.bundle.getString("success1_contentText")
                             + fileService.getTargetFileList().size());
+            this.onFindFiles();
         } else {
             MessageBox.error(Application.bundle.getString("error3_headerText")
                     , Application.bundle.getString("error3_contentText"));
         }
-
-        this.onFindFiles();
     }
 
     @FXML
