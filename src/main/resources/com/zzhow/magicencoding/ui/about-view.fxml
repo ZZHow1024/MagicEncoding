@@ -12,7 +12,7 @@
     </padding>
     <AnchorPane prefHeight="287.0" prefWidth="471.0">
         <children>
-            <Label fx:id="Label1" alignment="CENTER" layoutX="88.0" layoutY="14.0" prefHeight="75.0" prefWidth="280.0" text="神奇编码 3.0.0&#10;MagicEncoding 3.0.0" textAlignment="CENTER">
+            <Label fx:id="Label1" alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="75.0" prefWidth="436.0" text="神奇编码 3.0.0&#10;MagicEncoding 3.0.0" textAlignment="CENTER">
                 <font>
                     <Font size="28.0" />
                 </font>

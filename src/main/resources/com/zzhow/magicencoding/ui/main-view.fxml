@@ -21,7 +21,7 @@
             <Button fx:id="Button3" layoutX="527.0" layoutY="137.0" mnemonicParsing="false" onAction="#onTransform" text="开始转换" />
             <TextField fx:id="pathTextField" layoutX="165.0" layoutY="47.0" prefHeight="26.0" prefWidth="333.0" />
             <TextField fx:id="endWithTextField" layoutX="237.0" layoutY="93.0" prefHeight="26.0" prefWidth="188.0" />
-            <Label fx:id="Label1" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="605.0" text="将文件夹或文件拖拽至灰色区域以获取路径，多个后缀名可用&amp;分隔" />
+            <Label fx:id="Label1" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="660.0" text="将文件夹或文件拖拽至灰色区域以获取路径，多个后缀名可用&amp;分隔" />
             <Label fx:id="Label2" layoutX="60.0" layoutY="52.0" text="文件夹 / 文件：" />
             <Label fx:id="Label3" layoutX="60.0" layoutY="94.0" text="后缀名：" />
             <Label fx:id="Label4" layoutX="60.0" layoutY="143.0" text="字符集：" />
