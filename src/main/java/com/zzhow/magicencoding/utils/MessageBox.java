@@ -1,7 +1,6 @@
 package com.zzhow.magicencoding.utils;
 
 import com.zzhow.magicencoding.MainClass;
-import com.zzhow.magicencoding.ui.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -29,14 +28,14 @@ public class MessageBox {
 
     public static void error(String headerText, String contentText) {
         alert(Alert.AlertType.ERROR,
-                Application.bundle.getString("error"),
+                "错误",
                 headerText,
                 contentText);
     }
 
     public static void success(String headerText, String contentText) {
         alert(Alert.AlertType.INFORMATION,
-                Application.bundle.getString("success"),
+                "成功",
                 headerText,
                 contentText);
     }
