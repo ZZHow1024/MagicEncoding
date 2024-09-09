@@ -22,6 +22,8 @@ https://github.com/ZZHow1024/MagicEncoding/releases
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
+---
+
 ## 使用说明
 
 - 确定您使用的操作系统。
