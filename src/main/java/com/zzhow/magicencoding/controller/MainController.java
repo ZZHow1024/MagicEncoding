@@ -11,6 +11,9 @@ import javafx.scene.input.TransferMode;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.SortedMap;
 
 public class MainController {
 
@@ -43,6 +46,32 @@ public class MainController {
         originChoiceBox.setValue("GBK");
         targetChoiceBox.getItems().addAll("UTF-8", "GBK");
         targetChoiceBox.setValue("UTF-8");
+        languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
+
+        String language = Locale.getDefault().toLanguageTag();
+
+        if (language.contains("zh")) {
+            if (language.contains("Hans"))
+                language = "zh_CN";
+            else if (language.contains("Hant"))
+                language = "zh_TW";
+            else if (language.contains("CN"))
+                language = "zh_CN";
+            else 
+                language = "zh_TW";
+        } else {
+            language = "en_US";
+        }
+
+        language = switch (language) {
+            case "zh_CN" -> "简体中文";
+            case "zh_TW" -> "繁體中文";
+            case "en_US" -> "English";
+            default -> "简体中文";
+        };
+        languageSelector.setValue(language);
+        Application.language = language;
+        switchLanguage();
     }
 
     @FXML
@@ -100,4 +129,32 @@ public class MainController {
         About.open();
     }
 
+    @FXML
+    private void switchLanguage() {
+        String selectorValue = languageSelector.getValue();
+        selectorValue = switch (selectorValue) {
+            case "简体中文" -> "zh_CN";
+            case "繁體中文" -> "zh_TW";
+            case "English" -> "en_US";
+            default -> "zh_Hans";
+        };
+
+        Application.setLanguage(selectorValue);
+
+        ResourceBundle bundle = Application.bundle;
+
+        // 更新界面上的文本
+        Label1.setText(bundle.getString("Label1"));
+        Label2.setText(bundle.getString("Label2"));
+        Label3.setText(bundle.getString("Label3"));
+        Label4.setText(bundle.getString("Label4"));
+        Label5.setText(bundle.getString("Label5"));
+        Label6.setText(bundle.getString("Label6"));
+        Label7.setText(bundle.getString("Label7") + fileService.getTargetFileList().size());
+        Button1.setText(bundle.getString("Button1"));
+        Button2.setText(bundle.getString("Button2"));
+        Button3.setText(bundle.getString("Button3"));
+        Button4.setText(bundle.getString("Button4"));
+        isOverwriteCheckBox.setText(bundle.getString("isOverwriteCheckBox"));
+    }
 }
