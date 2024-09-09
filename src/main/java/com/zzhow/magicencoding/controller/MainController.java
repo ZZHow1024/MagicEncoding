@@ -80,10 +80,15 @@ public class MainController {
 
         String language = Locale.getDefault().toLanguageTag();
 
-        if (language.contains("zh") && language.contains("Hans")) {
-            language = "zh_CN";
-        } else if (language.contains("zh")) {
-            language = "zh_TW";
+        if (language.contains("zh")) {
+            if (language.contains("Hans"))
+                language = "zh_CN";
+            else if (language.contains("Hant"))
+                language = "zh_TW";
+            else if (language.contains("CN"))
+                language = "zh_CN";
+            else 
+                language = "zh_TW";
         } else {
             language = "en_US";
         }
