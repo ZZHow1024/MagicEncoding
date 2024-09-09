@@ -15,6 +15,7 @@ import javafx.scene.input.TransferMode;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.SortedMap;
 
@@ -76,21 +77,26 @@ public class MainController {
         originChoiceBox.setValue("Auto");
         targetChoiceBox.setValue("UTF-8");
         languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
-        File config = new File(System.getProperty("user.dir") + "/MagicEncoding.conf");
-        try (BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(config)))) {
-            String language = bf.readLine().split("=")[1];
-            language = switch (language) {
-                case "zh_CN" -> "简体中文";
-                case "zh_TW" -> "繁體中文";
-                case "en_US" -> "English";
-                default -> "简体中文";
-            };
-            languageSelector.setValue(language);
-            Application.language = language;
-            switchLanguage();
-        } catch (IOException e) {
-            languageSelector.setValue("简体中文");
+
+        String language = Locale.getDefault().toLanguageTag();
+
+        if (language.contains("zh") && language.contains("Hans")) {
+            language = "zh_CN";
+        } else if (language.contains("zh")) {
+            language = "zh_TW";
+        } else {
+            language = "en_US";
         }
+
+        language = switch (language) {
+            case "zh_CN" -> "简体中文";
+            case "zh_TW" -> "繁體中文";
+            case "en_US" -> "English";
+            default -> "简体中文";
+        };
+        languageSelector.setValue(language);
+        Application.language = language;
+        switchLanguage();
     }
 
     @FXML
@@ -164,12 +170,6 @@ public class MainController {
         };
 
         Application.setLanguage(selectorValue);
-        File config = new File(System.getProperty("user.dir") + "/MagicEncoding.conf");
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(config, false)))) {
-            bw.write("language=" + selectorValue);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         ResourceBundle bundle = Application.bundle;
 
