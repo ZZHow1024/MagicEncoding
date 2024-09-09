@@ -2,6 +2,7 @@ module com.zzhow.magicencoding {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires com.github.albfernandez.juniversalchardet;
 
 
     opens com.zzhow.magicencoding to javafx.fxml;

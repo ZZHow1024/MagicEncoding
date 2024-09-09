@@ -3,13 +3,17 @@ package com.zzhow.magicencoding.controller;
 import com.zzhow.magicencoding.service.FileService;
 import com.zzhow.magicencoding.service.impl.FileServiceImpl;
 import com.zzhow.magicencoding.ui.About;
+import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
-import java.io.File;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -21,17 +25,39 @@ public class MainController {
     private final FileService fileService = FileServiceImpl.getInstance();
 
     @FXML
+    private Label Label1;
+    @FXML
+    private Label Label2;
+    @FXML
+    private Label Label3;
+    @FXML
+    private Label Label4;
+    @FXML
+    private Label Label5;
+    @FXML
+    private Label Label6;
+    @FXML
+    private Label Label7;
+    @FXML
+    private Button Button1;
+    @FXML
+    private Button Button2;
+    @FXML
+    private Button Button3;
+    @FXML
+    private Button Button4;
+    @FXML
     private ChoiceBox<String> originChoiceBox;
     @FXML
     private ChoiceBox<String> targetChoiceBox;
+    @FXML
+    private ChoiceBox<String> languageSelector;
     @FXML
     private TextField pathTextField;
     @FXML
     private TextField endWithTextField;
     @FXML
     private ListView<String> filesListView;
-    @FXML
-    private Label fileNumber;
     @FXML
     private CheckBox isOverwriteCheckBox;
 
@@ -42,9 +68,13 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        originChoiceBox.getItems().addAll("GBK", "UTF-8");
-        originChoiceBox.setValue("GBK");
-        targetChoiceBox.getItems().addAll("UTF-8", "GBK");
+        SortedMap<String, Charset> stringCharsetSortedMap = Charset.availableCharsets();
+        originChoiceBox.getItems().add("Auto");
+        for (String charset : stringCharsetSortedMap.keySet()) {
+            originChoiceBox.getItems().add(charset);
+            targetChoiceBox.getItems().add(charset);
+        }
+        originChoiceBox.setValue("Auto");
         targetChoiceBox.setValue("UTF-8");
         languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
 
@@ -96,7 +126,7 @@ public class MainController {
         this.clearFilesPath();
         pathTextField.setText("");
         endWithTextField.setText("");
-        fileNumber.setText("文件数目：0");
+        Label7.setText(Application.bundle.getString("Label7") + "0");
     }
 
     @FXML
@@ -106,7 +136,8 @@ public class MainController {
         String endWith = endWithTextField.getText();
 
         filesListView.setItems(fileService.findFiles(absolutePath, endWith));
-        fileNumber.setText("文件数目：" + fileService.getTargetFileList().size());
+        Label7.setText(Application.bundle.getString("Label7")
+                + fileService.getTargetFileList().size());
     }
 
     @FXML
@@ -117,10 +148,14 @@ public class MainController {
         boolean isOverwrite = this.isOverwriteCheckBox.isSelected();
 
         if (fileService.transform(absolutePath, originCharset, targetCharset, isOverwrite)) {
-            MessageBox.success("执行成功", "已将" + fileService.getTargetFileList().size()
-                    + "个文件从 \"" + originCharset + "\" 转为 \"" + targetCharset + "\"");
+            MessageBox.success(Application.bundle.getString("success1_headerText"),
+                    "\"" + originCharset + "\" → \"" + targetCharset + "\""
+                            + Application.bundle.getString("success1_contentText")
+                            + fileService.getTargetFileList().size());
+            this.onFindFiles();
         } else {
-            MessageBox.error("执行失败", "请重试");
+            MessageBox.error(Application.bundle.getString("error3_headerText")
+                    , Application.bundle.getString("error3_contentText"));
         }
     }
 
