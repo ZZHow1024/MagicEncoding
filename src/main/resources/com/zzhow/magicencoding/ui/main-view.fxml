@@ -6,40 +6,158 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="535.0" prefWidth="700.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzhow.magicencoding.controller.MainController">
+<VBox alignment="CENTER" prefHeight="596.0" prefWidth="780.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzhow.magicencoding.controller.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <AnchorPane onDragDropped="#onDragFile" onDragOver="#handleDragOver" prefHeight="272.0" prefWidth="660.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
-        <children>
-            <Button fx:id="Button1" layoutX="527.0" layoutY="46.0" onAction="#onReset" text="重置" />
-            <Button fx:id="Button2" layoutX="527.0" layoutY="94.0" onAction="#onFindFiles" text="查找文件" />
-            <Button fx:id="Button3" layoutX="527.0" layoutY="137.0" mnemonicParsing="false" onAction="#onTransform" text="开始转换" />
-            <TextField fx:id="pathTextField" layoutX="165.0" layoutY="47.0" prefHeight="26.0" prefWidth="333.0" />
-            <TextField fx:id="endWithTextField" layoutX="237.0" layoutY="93.0" prefHeight="26.0" prefWidth="188.0" />
-            <Label fx:id="Label1" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="660.0" text="将文件夹或文件拖拽至灰色区域以获取路径，多个后缀名可用&amp;分隔" />
-            <Label fx:id="Label2" layoutX="60.0" layoutY="52.0" text="文件夹 / 文件：" />
-            <Label fx:id="Label3" layoutX="60.0" layoutY="94.0" text="后缀名：" />
-            <Label fx:id="Label4" layoutX="60.0" layoutY="143.0" text="字符集：" />
-            <Label fx:id="Label5" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="143.0" text="→" />
-            <ChoiceBox fx:id="originChoiceBox" layoutX="165.0" layoutY="139.0" prefHeight="26.0" prefWidth="120.0" />
-            <ChoiceBox fx:id="targetChoiceBox" layoutX="378.0" layoutY="139.0" prefHeight="26.0" prefWidth="120.0" />
-            <CheckBox fx:id="isOverwriteCheckBox" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="240.0" layoutY="181.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="181.0" selected="true" style="-fx-graphic-text-gap: 2px;" text="覆盖原文件" textAlignment="CENTER" />
-        </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="199.0" prefWidth="600.0">
-        <children>
-            <Label fx:id="Label6" layoutX="19.0" layoutY="4.0" text="命中的文件：" />
-            <Label fx:id="Label7" layoutX="22.0" layoutY="211.0" text="文件数目：0" />
-            <ListView fx:id="filesListView" layoutY="25.0" prefHeight="178.0" prefWidth="660.0" />
-            <Button fx:id="Button4" layoutX="309.0" layoutY="-10.0" mnemonicParsing="false" onAction="#onAbout" text="关于" />
-            <Label layoutX="484.0" layoutY="213.0" text="Language:" />
-            <ChoiceBox fx:id="languageSelector" layoutX="557.0" layoutY="208.0" onAction="#switchLanguage" prefHeight="26.0" prefWidth="88.0" />
-        </children>
-    </AnchorPane>
-    <Label alignment="CENTER" text="ZZHow" />
+   <TabPane prefHeight="519.0" prefWidth="858.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="字符文件">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="690.0">
+                  <children>
+                      <AnchorPane onDragDropped="#onDragFile" onDragOver="#handleDragOver" prefHeight="272.0" prefWidth="740.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                          <children>
+                              <Button fx:id="Button1" layoutX="636.0" layoutY="50.0" onAction="#onReset" text="重置" />
+                              <Button fx:id="Button2" layoutX="636.0" layoutY="100.0" onAction="#onFindFiles" text="查找文件" />
+                              <Button fx:id="Button3" layoutX="636.0" layoutY="150.0" mnemonicParsing="false" onAction="#onTransform" text="开始转换" />
+                              <TextField fx:id="pathTextField" layoutX="204.0" layoutY="50.0" prefHeight="26.0" prefWidth="333.0" />
+                              <TextField fx:id="endWithTextField" layoutX="276.0" layoutY="100.0" prefHeight="26.0" prefWidth="188.0" />
+                              <Label fx:id="Label1" alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="14.0" prefHeight="17.0" prefWidth="660.0" text="将文件夹或文件拖拽至灰色区域以获取路径，多个后缀名可用&amp;分隔" />
+                              <Label fx:id="Label2" layoutX="60.0" layoutY="50.0" text="文件夹 / 文件：" />
+                              <Label fx:id="Label3" layoutX="60.0" layoutY="100.0" text="后缀名：" />
+                              <Label fx:id="Label4" layoutX="60.0" layoutY="150.0" text="字符集：" />
+                              <Label fx:id="Label5" alignment="CENTER" contentDisplay="CENTER" layoutX="364.0" layoutY="150.0" text="→" />
+                              <ChoiceBox fx:id="originChoiceBox" layoutX="216.0" layoutY="150.0" prefHeight="26.0" prefWidth="120.0" />
+                              <ChoiceBox fx:id="targetChoiceBox" layoutX="404.0" layoutY="150.0" prefHeight="26.0" prefWidth="120.0" />
+                              <CheckBox fx:id="isOverwriteCheckBox" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="198.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="181.0" selected="true" style="-fx-graphic-text-gap: 2px;" text="覆盖原文件" textAlignment="CENTER" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane layoutY="254.0" prefHeight="234.0" prefWidth="740.0">
+                          <children>
+                              <Label fx:id="Label6" layoutX="20.0" layoutY="-5.0" text="命中的文件：" />
+                              <Label fx:id="Label7" layoutX="22.0" layoutY="211.0" text="文件数目：0" />
+                              <ListView fx:id="filesListView" layoutY="17.0" prefHeight="186.0" prefWidth="740.0" />
+                          </children>
+                      </AnchorPane>
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="字符文本">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TabPane prefHeight="481.0" prefWidth="740.0" tabClosingPolicy="UNAVAILABLE">
+                       <tabs>
+                         <Tab text="UTF-8">
+                           <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                                    <children>
+                                       <TextArea prefHeight="200.0" prefWidth="740.0" promptText="文本内容" />
+                                       <TextArea layoutY="250.0" prefHeight="200.0" prefWidth="740.0" promptText="UTF-8" />
+                                       <Button layoutX="316.0" layoutY="212.0" mnemonicParsing="false" text="↑" />
+                                       <Button layoutX="370.0" layoutY="212.0" mnemonicParsing="false" text="↓" />
+                                    </children>
+                                 </AnchorPane>
+                           </content>
+                         </Tab>
+                         <Tab text="Unicode">
+                           <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                                    <children>
+                                       <TextArea prefHeight="200.0" prefWidth="740.0" promptText="文本内容" />
+                                       <TextArea layoutY="250.0" prefHeight="200.0" prefWidth="740.0" promptText="Unicode" />
+                                       <Button layoutX="315.0" layoutY="212.0" mnemonicParsing="false" text="↑" />
+                                       <Button layoutX="370.0" layoutY="212.0" mnemonicParsing="false" text="↓" />
+                                    </children>
+                                 </AnchorPane>
+                           </content>
+                         </Tab>
+                           <Tab text="URL">
+                              <content>
+                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                                    <children>
+                                       <TextArea prefHeight="200.0" prefWidth="740.0" promptText="文本内容" />
+                                       <TextArea layoutY="250.0" prefHeight="200.0" prefWidth="740.0" promptText="URL" />
+                                       <Button layoutX="315.0" layoutY="212.0" mnemonicParsing="false" text="↑" />
+                                       <Button layoutX="370.0" layoutY="212.0" mnemonicParsing="false" text="↓" />
+                                    </children>
+                                 </AnchorPane>
+                              </content>
+                           </Tab>
+                           <Tab text="HTML">
+                              <content>
+                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                                    <children>
+                                       <TextArea prefHeight="200.0" prefWidth="740.0" promptText="文本内容" />
+                                       <TextArea layoutY="250.0" prefHeight="200.0" prefWidth="740.0" promptText="HTML" />
+                                       <Button layoutX="315.0" layoutY="212.0" mnemonicParsing="false" text="↑" />
+                                       <Button layoutX="370.0" layoutY="212.0" mnemonicParsing="false" text="↓" />
+                                    </children>
+                                 </AnchorPane>
+                              </content>
+                           </Tab>
+                       </tabs>
+                     </TabPane>
+                  </children></AnchorPane>
+         </content>
+       </Tab>
+         <Tab text="Unix时间戳">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.1);">
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="52.0" prefHeight="17.0" prefWidth="58.0" text="现在：" />
+                     <TextField layoutX="255.0" layoutY="47.0" prefHeight="26.0" prefWidth="230.0" />
+                     <Button layoutX="540.0" layoutY="47.0" mnemonicParsing="false" text="复制" />
+                     <TextField layoutX="85.0" layoutY="123.0" prefHeight="26.0" prefWidth="230.0" />
+                     <Button layoutX="352.0" layoutY="97.0" mnemonicParsing="false" text="--&gt;" />
+                     <Button layoutX="352.0" layoutY="149.0" mnemonicParsing="false" text="&lt;--" />
+                     <TextField layoutX="447.0" layoutY="123.0" prefHeight="26.0" prefWidth="230.0" />
+                     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="167.0" prefHeight="17.0" prefWidth="74.0" text="时间戳" />
+                     <Label layoutX="491.0" layoutY="167.0" text="YYYY-MM-DD HH:mm:ss" />
+                     <TitledPane animated="false" layoutY="223.0" prefHeight="255.0" prefWidth="740.0" text="快捷操作">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <TextField layoutX="130.0" layoutY="65.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <TextField layoutX="300.0" layoutY="65.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <TextField layoutX="470.0" layoutY="65.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <TextField layoutX="130.0" layoutY="114.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <TextField layoutX="300.0" layoutY="114.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <TextField layoutX="470.0" layoutY="114.0" prefHeight="26.0" prefWidth="88.0" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="70.0" prefHeight="17.0" prefWidth="58.0" text="年" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="401.0" layoutY="70.0" prefHeight="17.0" prefWidth="58.0" text="月" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="580.0" layoutY="70.0" prefHeight="17.0" prefWidth="58.0" text="日" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="时" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="401.0" layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="分" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="580.0" layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="秒" />
+                                 <ChoiceBox layoutX="294.0" layoutY="14.0" prefWidth="150.0" />
+                                 <Button layoutX="339.0" layoutY="170.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="操作" />
+                              </children>
+                           </AnchorPane>
+                       </content>
+                     </TitledPane>
+                  </children>
+               </AnchorPane>
+            </content>
+         </Tab>
+     </tabs>
+   </TabPane>
+   <AnchorPane prefHeight="0.0" prefWidth="740.0">
+      <children>
+            <Label layoutX="585.0" layoutY="5.0" text="Language:" />
+            <ChoiceBox fx:id="languageSelector" layoutX="652.0" onAction="#switchLanguage" prefHeight="26.0" prefWidth="88.0" />
+          <Label alignment="CENTER" layoutX="349.0" layoutY="5.0" text="ZZHow" />
+            <Button fx:id="Button4" mnemonicParsing="false" onAction="#onAbout" text="关于" />
+      </children>
+   </AnchorPane>
 </VBox>
