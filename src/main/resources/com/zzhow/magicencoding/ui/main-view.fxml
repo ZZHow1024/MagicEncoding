@@ -87,15 +87,17 @@
                                               promptText="文本内容"/>
                                     <TextArea fx:id="encodingText" layoutY="250.0" prefHeight="200.0" prefWidth="740.0"
                                               promptText="Unicode"/>
-                                    <Button layoutX="315.0" layoutY="212.0" mnemonicParsing="false"
-                                            onAction="#onDecodingText" text="↑"/>
-                                    <Button layoutX="370.0" layoutY="212.0" mnemonicParsing="false"
-                                            onAction="#onEncodingText" text="↓"/>
+                                    <Button layoutX="250.0" layoutY="213.0" mnemonicParsing="false"
+                                            onAction="#onDecodingText" prefWidth="80.0" text="↑"/>
+                                    <Button layoutX="410.0" layoutY="213.0" mnemonicParsing="false"
+                                            onAction="#onEncodingText" prefWidth="80.0" text="↓"/>
                                     <Label fx:id="urlCharsetText" alignment="CENTER" contentDisplay="CENTER"
-                                           layoutX="443.0" layoutY="217.0" prefHeight="17.0" prefWidth="70.0"
+                                           layoutX="500.0" layoutY="218.0" prefHeight="17.0" prefWidth="70.0"
                                            text="字符集：" visible="false"/>
-                                    <ChoiceBox fx:id="urlCharset" layoutX="513.0" layoutY="212.0" prefHeight="26.0"
+                                    <ChoiceBox fx:id="urlCharset" layoutX="570.0" layoutY="214.0" prefHeight="26.0"
                                                prefWidth="80.0" visible="false"/>
+                                    <Button layoutX="330.0" layoutY="213.0" mnemonicParsing="false"
+                                            onAction="#onTextReset" prefWidth="80.0" text="清除"/>
                                 </children>
                             </AnchorPane>
                         </children>

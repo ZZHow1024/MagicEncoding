@@ -141,6 +141,15 @@ public class MainController {
     }
 
     @FXML
+    private void onEncodingText() {
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+        String originalText = decodingText.getText();
+
+        String res = MyTextUtil.encode(originalText, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
+        encodingText.setText(res);
+    }
+
+    @FXML
     private void onDecodingText() {
         SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
         String text = encodingText.getText();
@@ -150,12 +159,9 @@ public class MainController {
     }
 
     @FXML
-    private void onEncodingText() {
-        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
-        String originalText = decodingText.getText();
-
-        String res = MyTextUtil.encode(originalText, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
-        encodingText.setText(res);
+    private void onTextReset() {
+        decodingText.clear();
+        encodingText.clear();
     }
 
     @FXML
