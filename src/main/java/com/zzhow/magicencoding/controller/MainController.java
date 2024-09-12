@@ -2,11 +2,12 @@ package com.zzhow.magicencoding.controller;
 
 import com.zzhow.magicencoding.enums.TextEncodingType;
 import com.zzhow.magicencoding.service.FileService;
+import com.zzhow.magicencoding.service.TextService;
 import com.zzhow.magicencoding.service.impl.FileServiceImpl;
+import com.zzhow.magicencoding.service.impl.TextServiceImpl;
 import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
-import com.zzhow.magicencoding.utils.MyTextUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -22,6 +23,8 @@ public class MainController {
 
     // 文件服务类
     private final FileService fileService = FileServiceImpl.getInstance();
+    // 文本服务类
+    private final TextService textService = TextServiceImpl.getInstance();
     // 字符编码索引
     private int textSelectedIndex = 0;
 
@@ -141,21 +144,23 @@ public class MainController {
     }
 
     @FXML
-    private void onEncodingText() {
-        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+    private void onEncodeText() {
         String originalText = decodingText.getText();
+        String originalCharset = urlCharset.getValue();
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+        TextEncodingType type = TextEncodingType.valueOf(selectionModel.getSelectedIndex());
 
-        String res = MyTextUtil.encode(originalText, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
-        encodingText.setText(res);
+        encodingText.setText(textService.encodeText(originalText, originalCharset, type));
     }
 
     @FXML
-    private void onDecodingText() {
-        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+    private void onDecodeText() {
         String text = encodingText.getText();
+        String originalCharset = urlCharset.getValue();
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+        TextEncodingType type = TextEncodingType.valueOf(selectionModel.getSelectedIndex());
 
-        String res = MyTextUtil.decode(text, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
-        decodingText.setText(res);
+        decodingText.setText(textService.decodeText(text, originalCharset, type));
     }
 
     @FXML

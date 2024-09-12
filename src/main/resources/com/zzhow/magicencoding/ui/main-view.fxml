@@ -88,9 +88,9 @@
                                     <TextArea fx:id="encodingText" layoutY="250.0" prefHeight="200.0" prefWidth="740.0"
                                               promptText="Unicode"/>
                                     <Button layoutX="250.0" layoutY="213.0" mnemonicParsing="false"
-                                            onAction="#onDecodingText" prefWidth="80.0" text="↑"/>
+                                            onAction="#onDecodeText" prefWidth="80.0" text="↑"/>
                                     <Button layoutX="410.0" layoutY="213.0" mnemonicParsing="false"
-                                            onAction="#onEncodingText" prefWidth="80.0" text="↓"/>
+                                            onAction="#onEncodeText" prefWidth="80.0" text="↓"/>
                                     <Label fx:id="urlCharsetText" alignment="CENTER" contentDisplay="CENTER"
                                            layoutX="500.0" layoutY="218.0" prefHeight="17.0" prefWidth="70.0"
                                            text="字符集：" visible="false"/>
