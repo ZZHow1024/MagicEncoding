@@ -23,6 +23,8 @@ public class MainController {
 
     // 文件服务类
     private final FileService fileService = FileServiceImpl.getInstance();
+    // 字符编码索引
+    private int textSelectedIndex = 0;
 
     @FXML
     private Label Label1;
@@ -60,6 +62,13 @@ public class MainController {
     private ListView<String> filesListView;
     @FXML
     private CheckBox isOverwriteCheckBox;
+    @FXML
+    private TabPane textTabPane;
+    @FXML
+    private TextArea decodingText;
+    @FXML
+    private TextArea encodingText;
+
 
     public void clearFilesPath() {
         fileService.clearTargetFileList();
@@ -87,7 +96,7 @@ public class MainController {
                 language = "zh_TW";
             else if (language.contains("CN"))
                 language = "zh_CN";
-            else 
+            else
                 language = "zh_TW";
         } else {
             language = "en_US";
@@ -102,6 +111,27 @@ public class MainController {
         languageSelector.setValue(language);
         Application.language = language;
         switchLanguage();
+    }
+
+    @FXML
+    private void onTextTabPaneClicked() {
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+
+        if (this.textSelectedIndex != selectionModel.getSelectedIndex()) {
+            this.textSelectedIndex = selectionModel.getSelectedIndex();
+            selectionModel.select(this.textSelectedIndex);
+            decodingText.clear();
+            encodingText.clear();
+            encodingText.setPromptText(selectionModel.getSelectedItem().getText());
+        }
+    }
+
+    @FXML
+    private void onDecodingText() {
+    }
+
+    @FXML
+    private void onEncodingText() {
     }
 
     @FXML
