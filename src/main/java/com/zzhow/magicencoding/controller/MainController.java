@@ -3,8 +3,10 @@ package com.zzhow.magicencoding.controller;
 import com.zzhow.magicencoding.enums.TextEncodingType;
 import com.zzhow.magicencoding.service.FileService;
 import com.zzhow.magicencoding.service.TextService;
+import com.zzhow.magicencoding.service.TimeService;
 import com.zzhow.magicencoding.service.impl.FileServiceImpl;
 import com.zzhow.magicencoding.service.impl.TextServiceImpl;
+import com.zzhow.magicencoding.service.impl.TimeServiceImpl;
 import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
@@ -21,8 +23,11 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainController {
 
@@ -30,13 +35,12 @@ public class MainController {
     private final FileService fileService = FileServiceImpl.getInstance();
     // 文本服务类
     private final TextService textService = TextServiceImpl.getInstance();
+    // 时间服务类
+    private final TimeService timeService = TimeServiceImpl.getInstance();
     // 字符编码索引
     private int textSelectedIndex = 0;
     // 主页索引
     private int selectedIndex = 0;
-    // 计时器
-    private Timer timer = null;
-    private boolean timerRunning = false;
 
     @FXML
     private Label Label1;
@@ -85,7 +89,9 @@ public class MainController {
     @FXML
     private ChoiceBox<String> urlCharset;
     @FXML
-    private TextField nowTimestamp;
+    private TextField nowTimestampS;
+    @FXML
+    private TextField nowTimestampMs;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -104,6 +110,10 @@ public class MainController {
     private TextField timeTextField7;
     @FXML
     private TextField timeTextField8;
+    @FXML
+    private ChoiceBox<String> secondTypeChoiceBox;
+    @FXML
+    private ChoiceBox<String> timeOperationType;
 
 
     public void clearFilesPath() {
@@ -125,6 +135,9 @@ public class MainController {
 
         urlCharset.getItems().addAll("UTF-8", "GBK");
         urlCharset.setValue("UTF-8");
+
+        secondTypeChoiceBox.getItems().addAll("秒", "毫秒");
+        secondTypeChoiceBox.setValue("秒");
 
         String language = Locale.getDefault().toLanguageTag();
 
@@ -179,27 +192,15 @@ public class MainController {
 
         if (this.selectedIndex != selectionModel.getSelectedIndex()) {
             this.selectedIndex = selectionModel.getSelectedIndex();
-            if (timerRunning) {
-                timer.cancel();
-                timerRunning = false;
-            } else if (selectionModel.getSelectedIndex() == 2) {
-                this.timer = new Timer();
-                timer.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        nowTimestamp.clear();
-                        nowTimestamp.setText(String.valueOf(System.currentTimeMillis()));
-                    }
-                }, 0, 800);
-                timerRunning = true;
-            }
+            if (selectionModel.getSelectedIndex() == 2)
+                this.onRefreshTimestamp();
         }
     }
 
     @FXML
-    private void onCopyTimestamp() {
-        StringSelection stringSelection = new StringSelection(nowTimestamp.getText());
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    private void onRefreshTimestamp() {
+        this.nowTimestampS.setText(System.currentTimeMillis() / 1000 + "");
+        this.nowTimestampMs.setText(System.currentTimeMillis() + "");
     }
 
     @FXML
@@ -212,6 +213,36 @@ public class MainController {
         timeTextField6.clear();
         timeTextField7.clear();
         timeTextField8.clear();
+    }
+
+    @FXML
+    private void onTimestampToTime() {
+        String text = timeTextField1.getText();
+        TimeUnit timeUnit = secondTypeChoiceBox.getSelectionModel().getSelectedIndex() == 0 ? TimeUnit.SECONDS : TimeUnit.MILLISECONDS;
+        if (text == null || text.isEmpty())
+            return;
+        try {
+            long timestamp = Long.parseLong(text);
+            timeTextField2.setText(timeService.timestampToTime(timestamp, timeUnit));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void onTimeToTimestamp() {
+        String text = timeTextField2.getText();
+        TimeUnit timeUnit = secondTypeChoiceBox.getSelectionModel().getSelectedIndex() == 0 ? TimeUnit.SECONDS : TimeUnit.MILLISECONDS;
+        if (text == null || text.isEmpty())
+            return;
+
+        try {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime localDateTime = LocalDateTime.parse(timeTextField2.getText(), dateTimeFormatter);
+            timeTextField1.setText(timeService.timeToTimestamp(localDateTime, timeUnit));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
