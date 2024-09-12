@@ -1,5 +1,7 @@
 package com.zzhow.magicencoding.service;
 
+import com.zzhow.magicencoding.enums.TimeOperationType;
+
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
@@ -24,5 +26,19 @@ public interface TimeService {
      * @return 时间戳
      */
     public String timeToTimestamp(LocalDateTime time, TimeUnit unit);
+
+    /**
+     * 时间操作
+     *
+     * @param time   待操作的时间
+     * @param year   年
+     * @param month  月
+     * @param day    日
+     * @param hour   时
+     * @param minute 分
+     * @param second 秒
+     * @return 操作后的时间
+     */
+    public String timeOperate(TimeOperationType type, String time, String year, String month, String day, String hour, String minute, String second);
 
 }

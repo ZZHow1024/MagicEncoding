@@ -1,5 +1,6 @@
 package com.zzhow.magicencoding.service.impl;
 
+import com.zzhow.magicencoding.enums.TimeOperationType;
 import com.zzhow.magicencoding.service.TimeService;
 import com.zzhow.magicencoding.utils.MyTimeUtil;
 
@@ -37,5 +38,62 @@ public class TimeServiceImpl implements TimeService {
         long timestamp = MyTimeUtil.localDateTimeToTimestamp(time);
 
         return String.valueOf(unit == TimeUnit.SECONDS ? timestamp / 1000 : timestamp);
+    }
+
+    @Override
+    public String timeOperate(TimeOperationType type, String time, String year, String month, String day, String hour, String minute, String second) {
+        LocalDateTime localDateTime = null;
+        try {
+            localDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        long yearLong = 0;
+        long monthLong = 0;
+        long dayLong = 0;
+        long hourLong = 0;
+        long minuteLong = 0;
+        long secondLong = 0;
+
+        if (year != null && !year.isEmpty())
+            try {
+                yearLong = Long.parseLong(year);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        if (month != null && !month.isEmpty())
+            try {
+                monthLong = Long.parseLong(month);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        if (day != null && !day.isEmpty())
+            try {
+                dayLong = Long.parseLong(day);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        if (hour != null && !hour.isEmpty())
+            try {
+                hourLong = Long.parseLong(hour);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        if (minute != null && !minute.isEmpty())
+            try {
+                minuteLong = Long.parseLong(minute);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        if (second != null && !second.isEmpty())
+            try {
+                secondLong = Long.parseLong(second);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        LocalDateTime res = MyTimeUtil.timeOperate(type, localDateTime, yearLong, monthLong, dayLong, hourLong, minuteLong, secondLong);
+
+        return res.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 }

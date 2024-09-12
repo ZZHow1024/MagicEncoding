@@ -1,6 +1,7 @@
 package com.zzhow.magicencoding.controller;
 
 import com.zzhow.magicencoding.enums.TextEncodingType;
+import com.zzhow.magicencoding.enums.TimeOperationType;
 import com.zzhow.magicencoding.service.FileService;
 import com.zzhow.magicencoding.service.TextService;
 import com.zzhow.magicencoding.service.TimeService;
@@ -138,6 +139,8 @@ public class MainController {
 
         secondTypeChoiceBox.getItems().addAll("秒", "毫秒");
         secondTypeChoiceBox.setValue("秒");
+        timeOperationType.getItems().addAll("向后", "向前");
+        timeOperationType.setValue("向后");
 
         String language = Locale.getDefault().toLanguageTag();
 
@@ -243,6 +246,31 @@ public class MainController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void onTimeOperate() {
+        int selectedIndex = timeOperationType.getSelectionModel().getSelectedIndex();
+        if (timeTextField2.getText().isEmpty())
+            if (!timeTextField1.getText().isEmpty())
+                this.onTimestampToTime();
+            else {
+                MessageBox.error("时间为空", "请填写时间或时间戳");
+                return;
+            }
+
+        String time = timeTextField2.getText();
+        TimeOperationType type = TimeOperationType.valueOf(selectedIndex);
+        String year = timeTextField3.getText();
+        String month = timeTextField4.getText();
+        String day = timeTextField5.getText();
+        String hour = timeTextField6.getText();
+        String minute = timeTextField7.getText();
+        String second = timeTextField8.getText();
+
+        String res = timeService.timeOperate(type, time, year, month, day, hour, minute, second);
+        timeTextField2.setText(res);
+        this.onTimeToTimestamp();
     }
 
     @FXML
