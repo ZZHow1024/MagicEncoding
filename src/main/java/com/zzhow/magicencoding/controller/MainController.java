@@ -1,10 +1,12 @@
 package com.zzhow.magicencoding.controller;
 
+import com.zzhow.magicencoding.enums.TextEncodingType;
 import com.zzhow.magicencoding.service.FileService;
 import com.zzhow.magicencoding.service.impl.FileServiceImpl;
 import com.zzhow.magicencoding.ui.About;
 import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
+import com.zzhow.magicencoding.utils.MyTextUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -14,10 +16,7 @@ import javafx.scene.input.TransferMode;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.SortedMap;
+import java.util.*;
 
 public class MainController {
 
@@ -68,6 +67,10 @@ public class MainController {
     private TextArea decodingText;
     @FXML
     private TextArea encodingText;
+    @FXML
+    private Label urlCharsetText;
+    @FXML
+    private ChoiceBox<String> urlCharset;
 
 
     public void clearFilesPath() {
@@ -86,6 +89,9 @@ public class MainController {
         originChoiceBox.setValue("Auto");
         targetChoiceBox.setValue("UTF-8");
         languageSelector.getItems().addAll("简体中文", "繁體中文", "English");
+
+        urlCharset.getItems().addAll("UTF-8", "GBK");
+        urlCharset.setValue("UTF-8");
 
         String language = Locale.getDefault().toLanguageTag();
 
@@ -118,7 +124,15 @@ public class MainController {
         SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
 
         if (this.textSelectedIndex != selectionModel.getSelectedIndex()) {
+            if (this.textSelectedIndex == TextEncodingType.URL.getValue()) {
+                urlCharsetText.setVisible(false);
+                urlCharset.setVisible(false);
+            }
             this.textSelectedIndex = selectionModel.getSelectedIndex();
+            if (this.textSelectedIndex == TextEncodingType.URL.getValue()) {
+                urlCharsetText.setVisible(true);
+                urlCharset.setVisible(true);
+            }
             selectionModel.select(this.textSelectedIndex);
             decodingText.clear();
             encodingText.clear();
@@ -132,6 +146,11 @@ public class MainController {
 
     @FXML
     private void onEncodingText() {
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+        String originalText = decodingText.getText();
+
+        String res = MyTextUtil.encode(originalText, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
+        encodingText.setText(res);
     }
 
     @FXML
