@@ -19,7 +19,8 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <TabPane prefHeight="519.0" prefWidth="858.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane fx:id="tabPane" onMouseClicked="#onTabPaneClicked" prefHeight="519.0" prefWidth="858.0"
+             tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab text="字符文件">
                 <content>
@@ -97,7 +98,7 @@
                                     <ChoiceBox fx:id="urlCharset" layoutX="570.0" layoutY="214.0" prefHeight="26.0"
                                                prefWidth="80.0" visible="false"/>
                                     <Button layoutX="330.0" layoutY="213.0" mnemonicParsing="false"
-                                            onAction="#onTextReset" prefWidth="80.0" text="清除"/>
+                                            onAction="#onTextReset" prefWidth="80.0" text="重置"/>
                                 </children>
                             </AnchorPane>
                         </children>
@@ -111,12 +112,16 @@
                         <children>
                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="52.0"
                                    prefHeight="17.0" prefWidth="58.0" text="现在："/>
-                            <TextField layoutX="255.0" layoutY="47.0" prefHeight="26.0" prefWidth="230.0"/>
-                            <Button layoutX="540.0" layoutY="47.0" mnemonicParsing="false" text="复制"/>
-                            <TextField layoutX="85.0" layoutY="123.0" prefHeight="26.0" prefWidth="230.0"/>
+                            <TextField fx:id="nowTimestamp" layoutX="255.0" layoutY="47.0" prefHeight="26.0"
+                                       prefWidth="230.0"/>
+                            <Button layoutX="508.0" layoutY="47.0" mnemonicParsing="false" onAction="#onCopyTimestamp"
+                                    prefWidth="75.0" text="复制"/>
+                            <TextField fx:id="timeTextField1" layoutX="85.0" layoutY="123.0" prefHeight="26.0"
+                                       prefWidth="230.0"/>
                             <Button layoutX="352.0" layoutY="97.0" mnemonicParsing="false" text="--&gt;"/>
                             <Button layoutX="352.0" layoutY="149.0" mnemonicParsing="false" text="&lt;--"/>
-                            <TextField layoutX="447.0" layoutY="123.0" prefHeight="26.0" prefWidth="230.0"/>
+                            <TextField fx:id="timeTextField2" layoutX="447.0" layoutY="123.0" prefHeight="26.0"
+                                       prefWidth="230.0"/>
                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="167.0"
                                    prefHeight="17.0" prefWidth="74.0" text="时间戳"/>
                             <Label layoutX="491.0" layoutY="167.0" text="YYYY-MM-DD HH:mm:ss"/>
@@ -125,18 +130,18 @@
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                         <children>
-                                            <TextField layoutX="130.0" layoutY="65.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
-                                            <TextField layoutX="300.0" layoutY="65.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
-                                            <TextField layoutX="470.0" layoutY="65.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
-                                            <TextField layoutX="130.0" layoutY="114.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
-                                            <TextField layoutX="300.0" layoutY="114.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
-                                            <TextField layoutX="470.0" layoutY="114.0" prefHeight="26.0"
-                                                       prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField3" layoutX="130.0" layoutY="65.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField4" layoutX="300.0" layoutY="65.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField5" layoutX="470.0" layoutY="65.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField6" layoutX="130.0" layoutY="114.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField7" layoutX="300.0" layoutY="114.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
+                                            <TextField fx:id="timeTextField8" layoutX="470.0" layoutY="114.0"
+                                                       prefHeight="26.0" prefWidth="88.0"/>
                                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0"
                                                    layoutY="70.0" prefHeight="17.0" prefWidth="58.0" text="年"/>
                                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="401.0"
@@ -150,12 +155,14 @@
                                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="580.0"
                                                    layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="秒"/>
                                             <ChoiceBox layoutX="294.0" layoutY="14.0" prefWidth="150.0"/>
-                                            <Button layoutX="339.0" layoutY="170.0" mnemonicParsing="false"
-                                                    prefHeight="26.0" prefWidth="60.0" text="操作"/>
+                                            <Button layoutX="332.0" layoutY="169.0" mnemonicParsing="false"
+                                                    prefWidth="75.0" text="操作"/>
                                         </children>
                                     </AnchorPane>
                                 </content>
                             </TitledPane>
+                            <Button layoutX="596.0" layoutY="48.0" mnemonicParsing="false" onAction="#onTimeReset"
+                                    prefWidth="75.0" text="重置"/>
                         </children>
                     </AnchorPane>
                 </content>

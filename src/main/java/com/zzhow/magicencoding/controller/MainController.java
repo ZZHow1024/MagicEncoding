@@ -10,14 +10,19 @@ import com.zzhow.magicencoding.ui.Application;
 import com.zzhow.magicencoding.utils.MessageBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.List;
 
 public class MainController {
 
@@ -27,6 +32,11 @@ public class MainController {
     private final TextService textService = TextServiceImpl.getInstance();
     // 字符编码索引
     private int textSelectedIndex = 0;
+    // 主页索引
+    private int selectedIndex = 0;
+    // 计时器
+    private Timer timer = null;
+    private boolean timerRunning = false;
 
     @FXML
     private Label Label1;
@@ -74,6 +84,26 @@ public class MainController {
     private Label urlCharsetText;
     @FXML
     private ChoiceBox<String> urlCharset;
+    @FXML
+    private TextField nowTimestamp;
+    @FXML
+    private TabPane tabPane;
+    @FXML
+    private TextField timeTextField1;
+    @FXML
+    private TextField timeTextField2;
+    @FXML
+    private TextField timeTextField3;
+    @FXML
+    private TextField timeTextField4;
+    @FXML
+    private TextField timeTextField5;
+    @FXML
+    private TextField timeTextField6;
+    @FXML
+    private TextField timeTextField7;
+    @FXML
+    private TextField timeTextField8;
 
 
     public void clearFilesPath() {
@@ -141,6 +171,47 @@ public class MainController {
             encodingText.clear();
             encodingText.setPromptText(selectionModel.getSelectedItem().getText());
         }
+    }
+
+    @FXML
+    private void onTabPaneClicked() {
+        SingleSelectionModel<Tab> selectionModel = this.tabPane.getSelectionModel();
+
+        if (this.selectedIndex != selectionModel.getSelectedIndex()) {
+            this.selectedIndex = selectionModel.getSelectedIndex();
+            if (timerRunning) {
+                timer.cancel();
+                timerRunning = false;
+            } else if (selectionModel.getSelectedIndex() == 2) {
+                this.timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        nowTimestamp.clear();
+                        nowTimestamp.setText(String.valueOf(System.currentTimeMillis()));
+                    }
+                }, 0, 800);
+                timerRunning = true;
+            }
+        }
+    }
+
+    @FXML
+    private void onCopyTimestamp() {
+        StringSelection stringSelection = new StringSelection(nowTimestamp.getText());
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    }
+
+    @FXML
+    private void onTimeReset() {
+        timeTextField1.clear();
+        timeTextField2.clear();
+        timeTextField3.clear();
+        timeTextField4.clear();
+        timeTextField5.clear();
+        timeTextField6.clear();
+        timeTextField7.clear();
+        timeTextField8.clear();
     }
 
     @FXML

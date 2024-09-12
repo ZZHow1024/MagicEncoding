@@ -3,6 +3,7 @@ module com.zzhow.magicencoding {
     requires javafx.fxml;
     requires java.desktop;
     requires com.github.albfernandez.juniversalchardet;
+    requires java.sql;
 
 
     opens com.zzhow.magicencoding to javafx.fxml;

@@ -29,6 +29,9 @@ public class Application extends javafx.application.Application {
         Image icon = new Image(Objects.requireNonNull(MainClass.class.getResourceAsStream("/image/icon.png")));
         stage.getIcons().add(icon);
         stage.setResizable(false);
+        stage.setOnHiding(windowEvent -> {
+            System.exit(0);
+        });
         stage.show();
     }
 
