@@ -142,6 +142,11 @@ public class MainController {
 
     @FXML
     private void onDecodingText() {
+        SingleSelectionModel<Tab> selectionModel = textTabPane.getSelectionModel();
+        String text = encodingText.getText();
+
+        String res = MyTextUtil.decode(text, urlCharset.getValue(), Objects.requireNonNull(TextEncodingType.valueOf(selectionModel.getSelectedIndex())));
+        decodingText.setText(res);
     }
 
     @FXML
