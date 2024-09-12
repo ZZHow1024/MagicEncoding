@@ -24,7 +24,7 @@ public class MyTimeUtil {
     }
 
     public static LocalDateTime timeOperate(TimeOperationType type, LocalDateTime localDateTime, long year, long month, long day, long hour, long minute, long second) {
-        if (type == TimeOperationType.FORWARD) {
+        if (type == TimeOperationType.BACKWARD) {
             localDateTime = localDateTime.plusYears(year);
             localDateTime = localDateTime.plusMonths(month);
             localDateTime = localDateTime.plusDays(day);

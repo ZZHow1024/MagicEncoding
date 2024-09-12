@@ -139,8 +139,8 @@ public class MainController {
 
         secondTypeChoiceBox.getItems().addAll("秒", "毫秒");
         secondTypeChoiceBox.setValue("秒");
-        timeOperationType.getItems().addAll("向后", "向前");
-        timeOperationType.setValue("向后");
+        timeOperationType.getItems().addAll("向前", "向后");
+        timeOperationType.setValue("向前");
 
         String language = Locale.getDefault().toLanguageTag();
 
