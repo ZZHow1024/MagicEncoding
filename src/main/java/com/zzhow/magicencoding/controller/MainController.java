@@ -287,7 +287,8 @@ public class MainController {
             if (!timeTextField1.getText().isEmpty())
                 this.onTimestampToTime();
             else {
-                MessageBox.error("时间为空", "请填写时间或时间戳");
+                ResourceBundle bundle = Application.bundle;
+                MessageBox.error(bundle.getString("error4_headerText"), bundle.getString("error4_contentText"));
                 return;
             }
 
