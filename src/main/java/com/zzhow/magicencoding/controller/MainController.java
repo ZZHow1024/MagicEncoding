@@ -20,8 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
@@ -115,6 +113,40 @@ public class MainController {
     private ChoiceBox<String> secondTypeChoiceBox;
     @FXML
     private ChoiceBox<String> timeOperationType;
+    @FXML
+    private Tab tab1;
+    @FXML
+    private Tab tab2;
+    @FXML
+    private Tab tab3;
+    @FXML
+    private Button textReset;
+    @FXML
+    private Label timeLabel1;
+    @FXML
+    private Label timeLabel2;
+    @FXML
+    private Label timeLabel3;
+    @FXML
+    private Label timeLabel4;
+    @FXML
+    private Label timeLabel5;
+    @FXML
+    private Label timeLabel6;
+    @FXML
+    private Label timeLabel7;
+    @FXML
+    private Label timeLabel8;
+    @FXML
+    private Label timeLabel9;
+    @FXML
+    private Button timeButton1;
+    @FXML
+    private Button timeButton2;
+    @FXML
+    private Button timeButton3;
+    @FXML
+    private TitledPane timeTitlePane;
 
 
     public void clearFilesPath() {
@@ -377,14 +409,41 @@ public class MainController {
         Label1.setText(bundle.getString("Label1"));
         Label2.setText(bundle.getString("Label2"));
         Label3.setText(bundle.getString("Label3"));
-        Label4.setText(bundle.getString("Label4"));
+        Label4.setText(bundle.getString("charset"));
         Label5.setText(bundle.getString("Label5"));
         Label6.setText(bundle.getString("Label6"));
         Label7.setText(bundle.getString("Label7") + fileService.getTargetFileList().size());
-        Button1.setText(bundle.getString("Button1"));
+        Button1.setText(bundle.getString("reset"));
         Button2.setText(bundle.getString("Button2"));
         Button3.setText(bundle.getString("Button3"));
         Button4.setText(bundle.getString("Button4"));
         isOverwriteCheckBox.setText(bundle.getString("isOverwriteCheckBox"));
+        tab1.setText(bundle.getString("tab1"));
+        tab2.setText(bundle.getString("tab2"));
+        tab3.setText(bundle.getString("tab3"));
+        urlCharsetText.setText(bundle.getString("charset"));
+        textReset.setText(bundle.getString("reset"));
+        decodingText.setPromptText(bundle.getString("text_content"));
+        timeLabel1.setText(bundle.getString("timeLabel1"));
+        timeLabel2.setText(bundle.getString("timeLabel2"));
+        timeLabel3.setText(bundle.getString("timeLabel3"));
+        timeLabel4.setText(bundle.getString("year"));
+        timeLabel5.setText(bundle.getString("month"));
+        timeLabel6.setText(bundle.getString("day"));
+        timeLabel7.setText(bundle.getString("hour"));
+        timeLabel8.setText(bundle.getString("minute"));
+        timeLabel9.setText(bundle.getString("second"));
+        timeButton1.setText(bundle.getString("refresh"));
+        timeButton2.setText(bundle.getString("reset"));
+        timeButton3.setText(bundle.getString("operate"));
+        timeTitlePane.setText(bundle.getString("quick_operations"));
+        int selectedIndex = secondTypeChoiceBox.getSelectionModel().getSelectedIndex();
+        secondTypeChoiceBox.getItems().removeIf(item -> true);
+        secondTypeChoiceBox.getItems().addAll(bundle.getString("second"), bundle.getString("millisecond"));
+        secondTypeChoiceBox.getSelectionModel().select(selectedIndex);
+        selectedIndex = timeOperationType.getSelectionModel().getSelectedIndex();
+        timeOperationType.getItems().removeIf(item -> true);
+        timeOperationType.getItems().addAll(bundle.getString("move_forward"), bundle.getString("move_backward"));
+        timeOperationType.getSelectionModel().select(selectedIndex);
     }
 }
