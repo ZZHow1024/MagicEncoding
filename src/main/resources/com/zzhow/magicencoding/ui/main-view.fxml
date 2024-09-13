@@ -84,9 +84,9 @@
                                         style="-fx-background-color: rgba(0, 0, 0, 0.1);">
                                 <children>
                                     <TextArea fx:id="decodingText" prefHeight="200.0" prefWidth="740.0"
-                                              promptText="文本内容"/>
+                                              promptText="文本内容" wrapText="true"/>
                                     <TextArea fx:id="encodingText" layoutY="250.0" prefHeight="194.0" prefWidth="740.0"
-                                              promptText="Unicode"/>
+                                              promptText="Unicode" wrapText="true"/>
                                     <Button layoutX="250.0" layoutY="213.0" mnemonicParsing="false"
                                             onAction="#onDecodeText" prefWidth="80.0" text="↑"/>
                                     <Button layoutX="410.0" layoutY="213.0" mnemonicParsing="false"
