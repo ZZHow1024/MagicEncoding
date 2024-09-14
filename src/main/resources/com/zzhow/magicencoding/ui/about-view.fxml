@@ -6,32 +6,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="287.0" prefWidth="471.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzhow.magicencoding.controller.AboutController">
+<VBox alignment="CENTER" prefHeight="433.0" prefWidth="595.0" spacing="20.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzhow.magicencoding.controller.AboutController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <AnchorPane prefHeight="287.0" prefWidth="471.0">
         <children>
-            <Label fx:id="Label1" alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="75.0" prefWidth="436.0" text="神奇编码 3.0.0&#10;MagicEncoding 3.0.0" textAlignment="CENTER">
+            <Label fx:id="Label1" alignment="CENTER" layoutX="60.0" layoutY="14.0" prefHeight="75.0" prefWidth="436.0"
+                   text="神奇编码 4.0.0&#10;MagicEncoding 4.0.0" textAlignment="CENTER">
                 <font>
-                    <Font size="28.0" />
+                    <Font size="28.0"/>
                 </font>
             </Label>
             <Label fx:id="Label2" layoutX="14.0" layoutY="100.0" prefHeight="23.0" prefWidth="90.0" text="新特性：">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="18.0"/>
                 </font>
             </Label>
-            <Label fx:id="Label3" alignment="CENTER" layoutX="3.0" layoutY="123.0" prefHeight="150.0" prefWidth="450.0" text="1. 自动识别编码。&#10;2. 单文件转换。&#10;3. 支持多语言。&#10;&#9;- 中文（简体 / 繁体）&#10;&#9;- 英文">
+            <Label fx:id="Label3" alignment="CENTER" layoutY="123.0" prefHeight="165.0" prefWidth="555.0"
+                   text="1. 字符文本的 Unicode 编解码。&#10;2. 字符文本的 URL 编解码。&#10;3. Unix 时间戳。&#10;&#9;- 支持时间戳与时间相互转换&#10;&#9;- 支持时间快捷操作">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="18.0"/>
                 </font>
             </Label>
         </children>
     </AnchorPane>
     <Label layoutX="183.0" layoutY="287.0" text="ZZHow.com">
         <font>
-            <Font size="20.0" />
+            <Font size="20.0"/>
         </font>
     </Label>
 </VBox>
