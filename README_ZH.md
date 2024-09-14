@@ -18,13 +18,21 @@ https://github.com/ZZHow1024/MagicEncoding/releases
 
 ---
 
-## License
+## 它是什么？
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+MagicEncoding 是一款跨平台的编码处理工具，支持字符文件的字符集转换、字符文本的编解码（Unicode 与 URL）和 Unix 时间戳（时间戳与时间相互转换 和 时间的快捷操作）。
+
+---
+
+## 许可证
+
+该项目根据 GNU 通用公共许可证 v3.0 获得许可 - 有关详细信息，请参阅 [LICENSE](LICENSE) 文件。
 
 ---
 
 ## 使用说明
+
+下载地址：https://github.com/ZZHow1024/MagicEncoding/releases
 
 - 确定您使用的操作系统。
     - Linux：
@@ -65,7 +73,23 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ---
 
-## 功能介绍
+## 支持的文件字符集
+
+- 支持转换的文件字符集：Big5，Big5-HKSCS，CESU-8，EUC-JP，EUC-KR，GB18030，GB2312，GBK，IBM-Thai，IBM00858，IBM01140，IBM01141，IBM01142，IBM01143，IBM01144，IBM01145，IBM01146，IBM01147，IBM01148，IBM01149，IBM037，IBM1026，IBM1047，IBM273，IBM277，IBM278，IBM280，IBM284，IBM285，IBM290，IBM297，IBM420，IBM424，IBM437，IBM500，IBM775，IBM850，IBM852，IBM855，IBM857，IBM860，IBM861，IBM862，IBM863，IBM864，IBM865，IBM866，IBM868，IBM869，IBM870，IBM871，IBM918，ISO-2022-CN，ISO-2022-JP，ISO-2022-JP-2，ISO-2022-KR，ISO-8859-1，ISO-8859-13，ISO-8859-15，ISO-8859-16，ISO-8859-2，ISO-8859-3，ISO-8859-4，ISO-8859-5，ISO-8859-6，ISO-8859-7，ISO-8859-8，ISO-8859-9，JIS_X0201，JIS_X0212-1990，KOI8-R，KOI8-U，Shift_JIS，TIS-620，US-ASCII，UTF-16，UTF-16BE，UTF-16LE，UTF-32，UTF-32BE，UTF-32LE，UTF-8，windows-1250，windows-1251，windows-1252，windows-1253，windows-1254，windows-1255，windows-1256，windows-1257，windows-1258，windows-31j，x-Big5-HKSCS-2001，x-Big5-Solaris，x-euc-jp-linux，x-EUC-TW，x-eucJP-Open，x-IBM1006，x-IBM1025，x-IBM1046，x-IBM1097，x-IBM1098，x-IBM1112，x-IBM1122，x-IBM1123，x-IBM1124，x-IBM1129，x-IBM1166，x-IBM1364，x-IBM1381，x-IBM1383，x-IBM29626C，x-IBM300，x-IBM33722，x-IBM737，x-IBM833，x-IBM834，x-IBM856，x-IBM874，x-IBM875，x-IBM921，x-IBM922，x-IBM930，x-IBM933，x-IBM935，x-IBM937，x-IBM939，x-IBM942，x-IBM942C，x-IBM943，x-IBM943C，x-IBM948，x-IBM949，x-IBM949C，x-IBM950，x-IBM964，x-IBM970，x-ISCII91，x-ISO-2022-CN-CNS，x-ISO-2022-CN-GB，x-iso-8859-11，x-JIS0208，x-JISAutoDetect，x-Johab，x-MacArabic，x-MacCentralEurope，x-MacCroatian，x-MacCyrillic，x-MacDingbat，x-MacGreek，x-MacHebrew，x-MacIceland，x-MacRoman，x-MacRomania，x-MacSymbol，x-MacThai，x-MacTurkish，x-MacUkraine，x-MS932_0213，x-MS950-HKSCS，x-MS950-HKSCS-XP，x-mswin-936，x-PCK，x-SJIS_0213，x-UTF-16LE-BOM，X-UTF-32BE-BOM，X-UTF-32LE-BOM，x-windows-50220，x-windows-50221，x-windows-874，x-windows-949，x-windows-950，x-windows-iso2022jp。
+- 支持自动识别的文件字符集：[Encodings that can be detected](https://github.com/albfernandez/juniversalchardet?tab=readme-ov-file#encodings-that-can-be-detected)。
+
+---
+
+## 依赖项
+
+该项目需要以下库：
+
+- [**juniversalchardet**](https://github.com/albfernandez/juniversalchardet)：用于字符编码检测。
+- [**OpenJFX**](https://openjfx.io/)：用于构建图形用户界面的 JavaFX 库。
+
+---
+
+## 各版本功能介绍
 
 - MagicEncoding4.0.0
     - 字符文本的 Unicode 编解码。
@@ -90,7 +114,7 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ---
 
-## **效果图**
+## 各版本主界面
 
 ![MagicEncoding4.0.0_ZH](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F4b165318-6383-451c-8845-110b786c9f0a%2Fb10a48cd-ee7f-49bd-a5c9-1a337b93b79a%2FMagicEncoding4.0.0_ZH.png?table=block&id=100e64bd-e40f-806d-8cd1-dd4538d217ba&t=100e64bd-e40f-806d-8cd1-dd4538d217ba&width=1624&cache=v2)
 
