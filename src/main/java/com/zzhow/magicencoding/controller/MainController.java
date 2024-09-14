@@ -437,7 +437,7 @@ public class MainController {
         timeButton1.setText(bundle.getString("refresh"));
         timeButton2.setText(bundle.getString("reset"));
         timeButton3.setText(bundle.getString("operate"));
-        timeTitlePane.setText(bundle.getString("quick_operations"));
+        timeTitlePane.setText(bundle.getString("shortcut_operations"));
         int selectedIndex = secondTypeChoiceBox.getSelectionModel().getSelectedIndex();
         secondTypeChoiceBox.getItems().removeIf(item -> true);
         secondTypeChoiceBox.getItems().addAll(bundle.getString("second"), bundle.getString("millisecond"));
